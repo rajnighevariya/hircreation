@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+    <title>New blog post</title>
+</head>
+
+<body>
+    <div class="container pt-5">
+        <div>
+
+
+            <div class="row mb-3">
+                <a href="blogs/new" class="btn btn-success d-flex align-items-center mr-2"><i
+                        class="material-icons mr-2">add_circle</i>
+                    New Image Add</a>
+
+                <a href="/" class="btn btn-success d-flex align-items-center mr-2"><i
+                        class="material-icons mr-2">house</i>
+                    Home</a>
+                <a href="/profile" class="btn btn-success d-flex align-items-center"><i
+                        class="material-icons mr-2">person</i>
+                    Profile</a>
+            </div>
+
+            <div class="row">
+                <% if(blogs.length<1){%>
+                    <p class="text-white">No posts yet, create a new one</p>
+                    <% } %>
+                        <% blogs.forEach(blog=>{ %>
+                            <div class="col-lg-6 card mt-2  mr-0">
+                                <div class="row p-2">
+                                    <div class="col-5 overflow-hidden">
+                                        <img src="/uploads/images/<%= blog.img %>" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="d-flex align-items-start">
+                                            <h5 class="w-100"><b>
+                                                    <%= blog.title %>
+                                                </b></h5>
+                                            <!-- display more button -->
+
+                                            <div class="d-flex">
+                                                <a class="btn btn-primary mr-1" href="blogs/edit/<%= blog.id %> "
+                                                    role="button">Edit</a>
+                                                <form action="/blogs/<%=blog.id%>?_method=DELETE" method="POST">
+                                                    <button class="btn btn-primary" type="submit">Delete</button>
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+                                        <span class="align-self-stretch ">
+                                            <%= blog.snippet %>
+
+                                        </span>
+                                        <div class="d-flex align-items-end">
+                                            <div class="mr-2">
+                                                <img src="/uploads/images/<%= blog.img %>" class="rounded-circle"
+                                                    style="width: 40px; height: 40px;">
+                                            </div>
+                                            <div class=" flex-grow-1">
+                                                <h5 class="" style="font-size: 14px; line-height: 0.5rem;">
+                                                    <span><b>
+                                                            <%= blog.author%>
+                                                        </b></span>
+                                                </h5>
+                                                <p style="font-size: 8px; line-height: 0.2rem;">
+                                                    <%= blog.timeCreated.toLocaleDateString() %>
+                                                </p>
+                                            </div>
+                                            <a href="blogs/<%=blog.slug %> " class=" align-self-end">
+                                                <i class='material-icons ml-3 text-black'>send</i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+            </div>
+
+        </div>
+    </div>
+    <script src="/js/index.js"></script>
+</body>

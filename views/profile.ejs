@@ -1,0 +1,52 @@
+<%- include('./partials/header.ejs') -%>
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="container">
+                <h1 class="mb-4 text-white">New Image</h1>
+
+                <form action="/blogs/profile/update" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+
+                        <label for="title" class="text-white">Name</label>
+                        <input type="text" name="username" value="<%= user.name %>" class="form-control"
+                            placeholder="Title">
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="author" class="text-white">Email</label>
+                        <input type="email" class="form-control" placeholder="Author" name="useremail"
+                            value="<%= user.email %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="usermobile" class="text-white">Mobile</label>
+                        <input type="number" name="usermobile" id="usermobile" value="<%= user.mobile %>"
+                            class="form-control">
+                    </div>
+                    <!-- <div class="form-group">
+        
+                        <label for="description" class="text-white">Description</label>
+                        <textarea name="description" placeholder="Description" class="form-control"></textarea>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="exampleInputProfile" class="text-white">Profile</label>
+                        <input type="text" name="userprofile" value="<%= user.profile %>" class="form-control"
+                            id="exampleInputProfile">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile_pic" class="text-white">Upload image</label>
+                        <input type="file" name="profile_pic" value="<%= user.profile_pic %>" id="profile_pic"
+                            class="form-control-file text-white">
+                    </div>
+
+                    <div class="form-group">
+                        <a href="/admin" class="btn btn-warning">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
